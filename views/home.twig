@@ -1,0 +1,39 @@
+{% extends "base.twig" %}
+
+{% block content %}
+
+	{% if posts.pagination.current==1 %}
+		{% include 'partial/sticky.twig' with { first_posts, second_posts } %}
+	{% endif %}
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+
+				{% if posts.pagination.current==1 %}
+					<hr class="pt-0 mt-0 mb-4"/>
+				{% endif %}
+
+				{% for post in posts %}
+					{% include ['tease.twig'] %}
+				{% endfor %}
+
+			</div>
+
+			<aside class="col-md-4 sidebar px-5">
+				<div id="about" class="widget_text widget widget_custom_html p-4 mb-3 rounded-0">
+					<h4 class="font-italic pb-2">{{ _e( 'About' ) }}</h4>
+					<div class="textwidget">{{ site.description }}</div>
+				</div>
+				{% if sidebar %}
+					{{ sidebar }}
+				{% endif %}
+			</aside>
+
+		</div>
+
+	</div>
+
+	{% include 'partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+
+{% endblock %}

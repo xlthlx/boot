@@ -1,0 +1,7 @@
+<div class="container">
+	<p class="float-end"><a href="#top">Back to top</a></p>
+	<p>
+		© {{ "now"|date('Y') }} {{ site.name }} {% include "menu-footer.twig" with {'items': menu_footer.get_items} %}
+	</p>
+</div>
+
